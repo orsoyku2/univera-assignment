@@ -1,0 +1,71 @@
+
+    <dx-tab-panel
+    #tabPanel
+    [height]="500"
+    [dataSource]="bankAccounts"
+    [selectedIndex]="0"
+    [loop]="false"
+    [animationEnabled]="true"
+    [swipeEnabled]="true"
+>
+    <div *dxTemplate="let bankAccount of 'title'">
+        <span>{{bankAccount.accountName}}</span>
+    </div>
+    <div *dxTemplate="let bankAccount of 'item'">
+        <div class="tabpanel-item">
+            <div>
+                <p>
+                    <b>Account Name:  </b>
+                    <span>{{bankAccount.accountName | titlecase}}</span>
+                </p>
+            </div>
+            <div>
+                <p>
+                    Your Current Balance: <b>{{bankAccount.balance | currency:'USD':true:'1.2-2' }}</b>
+                </p>
+                <div class="operations">
+                    <dx-button
+                        stylingMode="contained"
+                        text="Deposit"
+                        type="success"
+                        [width]="120"
+                        (onClick)="openDepositModal(bankAccount)"></dx-button>
+                    <dx-button
+                        stylingMode="contained"
+                        text="withdraw money"
+                        type="success"
+                        [width]="120"
+                        (onClick)="openWidthDrawMoneyModal(bankAccount)"></dx-button>
+            </div>
+            </div>
+        </div>
+        <dx-popup
+        [width]="660"
+        [height]="540"
+        [showTitle]="true"
+        [title]="currentBankAccount.accountName"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+            <div class='popup-property-details'>
+                <h1>Your Money: {{currentBankAccount.balance | currency:'USD':'symbol':'1.0-0'}}</h1><br>
+                <input type="number" [(ngModel)]="amount"/>
+                <button (click)="formActionClick(currentBankAccount)">{{operation === 'draw'?'Draw':'Deposit'}}</button>
+                <!-- <dx-button
+                    class="favorites"
+                    [text]="operation === 'draw'?'Draw':'Deposit'"
+                    icon="plus"
+                    [width]="150"
+                    [height]="44"
+                    (click)="formActionClick(currentBankAccount)"
+                    >
+                </dx-button> -->
+            </div>
+        </div>
+    </dx-popup>
+    </div>
+</dx-tab-panel>
+<div class="item-box">
+    Item <span>{{tabPanel.selectedIndex + 1}}</span> of <span>{{itemCount}}</span>
+</div>
