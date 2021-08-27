@@ -11,9 +11,9 @@ export class BankAccount{
 @Injectable()
 export class BankAccountService {
   bankAccounts: BankAccount[] = [
-    {id:1,accountName:"account1",balance:100000},
-    {id:2,accountName:"account2",balance:30000},
-    {id:3,accountName:"account3",balance:40000}
+    {id:1,accountName:"First Account",balance:100000},
+    {id:2,accountName:"Second Account",balance:30000},
+    {id:3,accountName:"Third Account",balance:40000}
 ];
     getBankAccounts(): BankAccount[] {
         return this.bankAccounts;

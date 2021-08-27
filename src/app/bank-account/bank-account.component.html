@@ -32,7 +32,7 @@
                         (onClick)="openDepositModal(bankAccount)"></dx-button>
                     <dx-button
                         stylingMode="contained"
-                        text="withdraw money"
+                        text="Withdraw"
                         type="success"
                         [width]="120"
                         (onClick)="openWidthDrawMoneyModal(bankAccount)"></dx-button>
@@ -40,8 +40,8 @@
             </div>
         </div>
         <dx-popup
-        [width]="660"
-        [height]="540"
+        [width]="400"
+        [height]="250"
         [showTitle]="true"
         [title]="currentBankAccount.accountName"
         [dragEnabled]="false"
@@ -49,18 +49,9 @@
         [(visible)]="popupVisible">
         <div *dxTemplate="let data of 'content'">
             <div class='popup-property-details'>
-                <h1>Your Money: {{currentBankAccount.balance | currency:'USD':'symbol':'1.0-0'}}</h1><br>
+                <h4>Your Money: {{currentBankAccount.balance | currency:'USD':'symbol':'1.0-0'}}</h4><br>
                 <input type="number" [(ngModel)]="amount"/>
                 <button (click)="formActionClick(currentBankAccount)">{{operation === 'draw'?'Draw':'Deposit'}}</button>
-                <!-- <dx-button
-                    class="favorites"
-                    [text]="operation === 'draw'?'Draw':'Deposit'"
-                    icon="plus"
-                    [width]="150"
-                    [height]="44"
-                    (click)="formActionClick(currentBankAccount)"
-                    >
-                </dx-button> -->
             </div>
         </div>
     </dx-popup>

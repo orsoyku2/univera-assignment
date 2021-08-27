@@ -10,7 +10,7 @@ export class User{
 }
 
 let user: User = 
-  {id:1,name:"Öykü",surname:"Örs",age:25,imageUrl:"https://cdn4.vectorstock.com/i/1000x1000/72/98/femaln-round-african-american-vector-18307298.jpg",job:'engineer'};
+  {id:1,name:"Kristie",surname:"Cole",age:25,imageUrl:"https://www.kindpng.com/picc/m/163-1636340_user-avatar-icon-avatar-transparent-user-icon-png.png",job:'engineer'};
 
 @Injectable({
   providedIn: 'root'

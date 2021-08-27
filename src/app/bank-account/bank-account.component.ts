@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount,BankAccountService } from '../services/bank-account.service'
-
+import notify from 'devextreme/ui/notify';
 
 
 @Component({
@@ -50,7 +50,12 @@ export class BankAccountComponent implements OnInit {
   formActionClick(currentBankAccount:BankAccount){
 
     if(this.operation === 'draw'){
-      this.currentBankAccount = {...currentBankAccount,balance : currentBankAccount.balance- this.amount}
+      if(this.amount - currentBankAccount.balance < 0 ) {
+        this.currentBankAccount = {...currentBankAccount,balance : currentBankAccount.balance- this.amount}
+      }else{
+        notify("We are unable to process your transaction because you do not have enough funds.", "warning", 1500);
+      }
+     
     }else{
       this.currentBankAccount = {...currentBankAccount,balance : currentBankAccount.balance+ this.amount}
     }
